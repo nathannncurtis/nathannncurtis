@@ -37,8 +37,4 @@ building full-stack desktop apps with electron, react, and typescript on the fro
 
 ---
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=nathannncurtis&show_icons=true&theme=tokyonight&hide_border=true&hide_title=true" />
-</p>
-
 <p align="center"><i>i work on problems that live in filing cabinets, not on whiteboards.</i></p>

@@ -33,7 +33,7 @@ most of my work lives in internal repos — automation, document processing, OCR
 
 ### 🌱 currently
 
-building full-stack desktop apps with electron, react, and typescript on the frontend paired with python/fastapi backends. still fighting windows packaging. losing gracefully.
+building [coil](https://github.com/nathannncurtis/coil) — a python-to-executable compiler. also building full-stack desktop apps with electron, react, and typescript on the frontend paired with python/fastapi backends.
 
 ---
 

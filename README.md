@@ -1,5 +1,7 @@
 # nathan
 
+[nathancurtis.to](https://nathancurtis.to)
+
 I build internal tools — automation, document processing, desktop apps, and the infrastructure around them. Most of my work lives in private repos for environments where nothing talks to anything else and "just use a SaaS" isn't an option.
 
 I'm usually the person diagnosing why a workflow broke before I'm the one building the thing that fixes it.

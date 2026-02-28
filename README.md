@@ -28,7 +28,7 @@ I'm usually the person diagnosing why a workflow broke before I'm the one buildi
 
 **medical imaging** — DICOM viewers, study aggregators, and x-ray processing tools that handle the gap between clinical systems and what people actually need to do with the data.
 
-**desktop apps** — Electron + React + Python tools that run locally, deploy internally, and don't need a login screen. Usually backed by FastAPI with embedded Python servers.
+**image optimization** — [Feather](https://github.com/nathannncurtis/Feather), a lightweight image optimizer for dynamically resizing and compressing TIFF/JPEG in bulk. Built for workflows where thousands of scanned images need to shrink before archival or transfer.
 
 **operational automation** — connecting systems that weren't designed to talk to each other, stabilizing processes that keep breaking, and replacing the manual glue that holds production workflows together.
 

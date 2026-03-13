@@ -10,15 +10,15 @@ I'm usually the person diagnosing why a workflow broke before I'm the one buildi
 
 ### what I work with
 
-**languages** — Python, TypeScript, JavaScript, Go, PowerShell, PHP
+**languages** — Python, C, C++, C#, TypeScript, JavaScript, Go, PowerShell, Shell, PHP
 
-**frontend** — React, Electron, HTML/CSS
+**frontend** — React, Electron, PyQt5, HTML/CSS
 
-**backend** — FastAPI, PyQt
+**backend** — FastAPI, Docker
 
-**data** — SQLite, PostgreSQL
+**data** — SQLite, PostgreSQL, SQL
 
-**tooling** — Tesseract, Ghostscript, ImageMagick, Pillow, Docker
+**tooling** — Tesseract, Ghostscript, ImageMagick, Pillow, AG Grid, Inno Setup
 
 **environment** — Windows, WSL, Ubuntu, macOS, Arch, VS Code, Git
 

@@ -10,9 +10,9 @@ I'm usually the person diagnosing why a workflow broke before I'm the one buildi
 
 ### what I work with
 
-**languages** — Python, C, C++, C#, TypeScript, JavaScript, Go, PowerShell, Shell, PHP
+**languages** — Python, Swift, C, C++, C#, TypeScript, JavaScript, Go, PowerShell, Shell, PHP
 
-**frontend** — React, Electron, PyQt5, HTML/CSS
+**frontend** — React, SwiftUI, Electron, PyQt5, HTML/CSS
 
 **backend** — FastAPI, Docker
 

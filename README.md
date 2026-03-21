@@ -1,45 +1,37 @@
-# nathan
+# nathan 👋
 
-[nathancurtis.to](https://nathancurtis.to)
+I build internal tools — the kind that connect systems no one designed to talk to each other, replace the manual glue holding production workflows together, and survive environments where "just use a SaaS" isn't an option. I'm usually the person diagnosing why something broke before I'm the one building the fix.
 
-I build internal tools — automation, document processing, desktop apps, and the infrastructure around them. Most of my work lives in private repos for environments where nothing talks to anything else and "just use a SaaS" isn't an option.
-
-I'm usually the person diagnosing why a workflow broke before I'm the one building the thing that fixes it.
+Most of my work lives in private repos and under my org. Here's what I can talk about.
 
 ---
 
-### what I work with
+### right now
 
-**languages** — Python, Swift, C, C++, C#, TypeScript, JavaScript, Go, PowerShell, Shell, PHP
+**steddi** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and Mapbox — only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
 
-**frontend** — React, SwiftUI, Electron, PyQt5, HTML/CSS
+**[coil](https://github.com/nathannncurtis/coil)** — a Python-to-executable compiler. Point it at a project directory, get a standalone .exe back. No spec files, no hook scripts.
 
-**backend** — FastAPI, Docker
-
-**data** — SQLite, PostgreSQL, SQL
-
-**tooling** — Tesseract, Ghostscript, ImageMagick, Pillow, AG Grid, Inno Setup
-
-**environment** — Windows, WSL, Ubuntu, macOS, Arch, VS Code, Git
+**[Feather](https://github.com/nathannncurtis/Feather)** — a lightweight image optimizer for bulk TIFF/JPEG resizing and compression. Built for workflows where thousands of scanned images need to shrink before archival or transfer.
 
 ---
 
-### what I've built
+### the kind of stuff I build
 
-**document processing** — batch OCR, PDF compression, image pipelines, and classification tools for legal/medical workflows. Built around the actual hardware, network paths, and legacy software they have to survive in.
+Document processing pipelines for legal and medical workflows — batch OCR, PDF compression, image classification — built around the actual hardware, network paths, and legacy software they have to survive in.
 
-**medical imaging** — DICOM viewers, study aggregators, and x-ray processing tools that handle the gap between clinical systems and what people actually need to do with the data.
+DICOM viewers and x-ray processing tools that handle the gap between clinical systems and what people actually need to do with the data.
 
-**image optimization** — [Feather](https://github.com/nathannncurtis/Feather), a lightweight image optimizer for dynamically resizing and compressing TIFF/JPEG in bulk. Built for workflows where thousands of scanned images need to shrink before archival or transfer.
-
-**operational automation** — connecting systems that weren't designed to talk to each other, stabilizing processes that keep breaking, and replacing the manual glue that holds production workflows together.
-
-**dashboards** — internal performance tracking, employee metrics, and operational reporting without spinning up a whole BI platform.
-
-**small utilities** — file renaming, format conversion, record lookups, folder monitoring, archive management. The stuff that saves 20 minutes a day and no one thinks to automate.
+Dashboards, operational automation, and small utilities — the stuff that saves 20 minutes a day and no one thinks to automate.
 
 ---
 
-### current project
+### tech
 
-[coil](https://github.com/nathannncurtis/coil) — a Python-to-executable compiler. Point it at a project directory, get a standalone .exe back. No spec files, no hook scripts.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![Swift](https://img.shields.io/badge/Swift-F05138?style=flat&logo=swift&logoColor=white) ![Rust](https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white) ![C](https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=black) ![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white) ![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=csharp&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white) ![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white)
+
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black) ![SwiftUI](https://img.shields.io/badge/SwiftUI-F05138?style=flat&logo=swift&logoColor=white) ![Electron](https://img.shields.io/badge/Electron-47848F?style=flat&logo=electron&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
+
+---
+
+more at [nathancurtis.to](https://nathancurtis.to)

@@ -1,6 +1,6 @@
 # nathan 👋
 
-I build internal tools — the kind that connect systems no one designed to talk to each other, replace the manual glue holding production workflows together, and survive environments where "just use a SaaS" isn't an option. I'm usually the person diagnosing why something broke before I'm the one building the fix.
+I build internal tools. The kind that connect systems no one designed to talk to each other, replace the manual glue holding production workflows together, and survive environments where "just use a SaaS" isn't an option. I'm usually the person diagnosing why something broke before I'm the one building the fix.
 
 Most of my work lives in private repos and under my org. Here's what I can talk about.
 
@@ -8,7 +8,7 @@ Most of my work lives in private repos and under my org. Here's what I can talk 
 
 ### right now
 
-**steddi** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and Mapbox — only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
+**steddi** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and Mapbox. Only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
 
 **[coil](https://github.com/nathannncurtis/coil)** — a Python-to-executable compiler. Point it at a project directory, get a standalone .exe back. No spec files, no hook scripts.
 
@@ -18,11 +18,11 @@ Most of my work lives in private repos and under my org. Here's what I can talk 
 
 ### the kind of stuff I build
 
-Document processing pipelines for legal and medical workflows — batch OCR, PDF compression, image classification — built around the actual hardware, network paths, and legacy software they have to survive in.
+Document processing pipelines for legal and medical workflows: batch OCR, PDF compression, image classification. Built around the actual hardware, network paths, and legacy software they have to survive in.
 
 DICOM viewers and x-ray processing tools that handle the gap between clinical systems and what people actually need to do with the data.
 
-Dashboards, operational automation, and small utilities — the stuff that saves 20 minutes a day and no one thinks to automate.
+Dashboards, operational automation, and small utilities. The stuff that saves 20 minutes a day and no one thinks to automate.
 
 ---
 

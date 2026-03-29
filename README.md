@@ -8,7 +8,7 @@ Most of my work lives in private repos and under my org. Here's what I can talk 
 
 ### right now
 
-**[steddi](https://steddi.io)** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and Mapbox. Only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
+**[steddi](https://steddi.io)** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and MapKit. Only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
 
 **[coil](https://github.com/nathannncurtis/coil)** — a Python-to-executable compiler. Point it at a project directory, get a standalone .exe back. No spec files, no hook scripts.
 

@@ -1,20 +1,20 @@
-<svg width="820" height="272" viewBox="0 0 820 272" xmlns="http://www.w3.org/2000/svg">
-  <rect width="820" height="272" rx="10" fill="#0d1117"/>
+<svg width="820" height="300" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="820" height="300" rx="10" fill="#0d1117"/>
   <rect x="0" y="0" width="820" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>
   <text x="28" y="28" fill="#556270" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>
-  <line x1="250" y1="44" x2="250" y2="248" stroke="#1a1f26" stroke-width="1"/>
+  <line x1="250" y1="44" x2="250" y2="276" stroke="#1a1f26" stroke-width="1"/>
   <text x="250" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">NOV</text>
-  <line x1="354" y1="44" x2="354" y2="248" stroke="#1a1f26" stroke-width="1"/>
+  <line x1="354" y1="44" x2="354" y2="276" stroke="#1a1f26" stroke-width="1"/>
   <text x="354" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">DEC</text>
-  <line x1="462" y1="44" x2="462" y2="248" stroke="#1a1f26" stroke-width="1"/>
+  <line x1="462" y1="44" x2="462" y2="276" stroke="#1a1f26" stroke-width="1"/>
   <text x="462" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JAN</text>
-  <line x1="570" y1="44" x2="570" y2="248" stroke="#1a1f26" stroke-width="1"/>
-  <text x="570" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">FEB</text>
-  <line x1="667" y1="44" x2="667" y2="248" stroke="#1a1f26" stroke-width="1"/>
+  <line x1="569" y1="44" x2="569" y2="276" stroke="#1a1f26" stroke-width="1"/>
+  <text x="569" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">FEB</text>
+  <line x1="667" y1="44" x2="667" y2="276" stroke="#1a1f26" stroke-width="1"/>
   <text x="667" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAR</text>
-  <line x1="774" y1="44" x2="774" y2="248" stroke="#1a1f26" stroke-width="1"/>
+  <line x1="774" y1="44" x2="774" y2="276" stroke="#1a1f26" stroke-width="1"/>
   <text x="774" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">APR</text>
-  <line x1="792" y1="44" x2="792" y2="248" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>
+  <line x1="792" y1="44" x2="792" y2="276" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>
   <text x="148" y="70" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">Study-Aggregator</text>
   <line x1="160" y1="66" x2="792" y2="66" stroke="#151a20" stroke-width="1"/>
   <circle cx="792" cy="66" r="5" fill="#C97B5E" opacity="0.9"/>
@@ -27,52 +27,55 @@
   <line x1="160" y1="122" x2="792" y2="122" stroke="#151a20" stroke-width="1"/>
   <circle cx="786" cy="122" r="5" fill="#7DB4E8" opacity="0.9"/>
   <text x="796" y="126" fill="#3a4450" font-family="monospace" font-size="9">TypeScript</text>
-  <text x="148" y="154" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">steddi</text>
+  <text x="148" y="154" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">File-Processor</text>
   <line x1="160" y1="150" x2="792" y2="150" stroke="#151a20" stroke-width="1"/>
-  <circle cx="772" cy="150" r="5" fill="#A78BFA" opacity="0.9"/>
-  <text x="782" y="154" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
-  <text x="148" y="182" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">coil</text>
+  <circle cx="786" cy="150" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="796" y="154" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <text x="148" y="182" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">steddi</text>
   <line x1="160" y1="178" x2="792" y2="178" stroke="#151a20" stroke-width="1"/>
-  <circle cx="730" cy="178" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="740" y="182" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
-  <text x="148" y="210" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">commit-summarizer</text>
+  <circle cx="772" cy="178" r="5" fill="#A78BFA" opacity="0.9"/>
+  <text x="782" y="182" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
+  <text x="148" y="210" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">coil</text>
   <line x1="160" y1="206" x2="792" y2="206" stroke="#151a20" stroke-width="1"/>
-  <circle cx="709" cy="206" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="719" y="210" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
-  <text x="148" y="238" fill="#3a4450" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end" font-style="italic">and 34 more</text>
+  <circle cx="729" cy="206" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="739" y="210" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <text x="148" y="238" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">commit-summarizer</text>
   <line x1="160" y1="234" x2="792" y2="234" stroke="#151a20" stroke-width="1"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="788" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="792" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="792" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="786" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="638" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="684" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="772" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="685" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="711" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="711" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="792" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="708" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="753" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="758" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="768" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="778" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="782" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="782" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
-  <circle cx="782" cy="234" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="709" cy="234" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="719" y="238" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <text x="148" y="266" fill="#3a4450" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end" font-style="italic">and 33 more</text>
+  <line x1="160" y1="262" x2="792" y2="262" stroke="#151a20" stroke-width="1"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="788" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="792" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="792" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="786" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="638" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="684" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="772" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="685" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="711" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="711" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="791" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="708" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="753" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="758" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="767" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="778" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="782" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="782" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
+  <circle cx="782" cy="262" r="3" fill="#3A4450" opacity="0.5"/>
 </svg>

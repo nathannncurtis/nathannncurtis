@@ -34,6 +34,7 @@ var featured = map[string]bool{
 	"obsidian-vault-sync": true,
 	"steddi":            true,
 	"coil":              true,
+	"File-Processor":    true,
 }
 
 var langColors = map[string]string{

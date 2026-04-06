@@ -18,6 +18,8 @@ I build internal tools and native apps. The kind that connect systems no one des
 
 **[coil](https://github.com/nathannncurtis/coil)** · Python-to-executable compiler. Directory in, `.exe` out. Published on [PyPI](https://pypi.org/project/coil-compiler/).
 
+**[File-Processor](https://github.com/nathannncurtis/File-Processor)** · Network-aware batch PDF/TIFF/JPEG converter. 20M+ pages processed in production.
+
 ---
 
 ### what I build

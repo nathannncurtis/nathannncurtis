@@ -8,11 +8,15 @@ Most of my work lives in private repos and under my org. Here's what I can talk 
 
 ### right now
 
-**[steddi](https://steddi.io)** — an iOS navigation app for daily commuters who already know their routes. Built with Swift, SwiftUI, and MapKit. Only reroutes you when it actually matters. Includes CarPlay support. Currently in development.
+**[mdview-zig](https://github.com/nathannncurtis/mdview-zig)** — a fast, native markdown viewer in Zig. Platform-native text rendering (DirectWrite on Windows, Cairo/Pango on Linux, CoreText on macOS), no webview, no runtime — ~285KB standalone binary across all three platforms. Rewrite of an earlier Rust/WebView2 version that dropped the 200MB browser dependency entirely.
 
-**[coil](https://github.com/nathannncurtis/coil)** — a Python-to-executable compiler. Point it at a project directory, get a standalone .exe back. No spec files, no hook scripts.
+**[Study Aggregator v4.0](https://github.com/nathannncurtis/Study-Aggregator)** — DICOM processor for legal/medical imaging workflows. Rewrote the parsing hot path as a native Rust engine called via subprocess from the PyQt5 GUI. Zero-copy memory-mapped parsing, parallel directory walking and per-file parsing (rayon), streaming ZIP extraction so multi-GB archives don't balloon RAM. Roughly **100–400x faster** than the previous pydicom-based implementation on typical office hardware.
 
-**[Feather](https://github.com/nathannncurtis/Feather)** — a lightweight image optimizer for bulk TIFF/JPEG resizing and compression. Built for workflows where thousands of scanned images need to shrink before archival or transfer.
+**[commit-summarizer](https://github.com/nathannncurtis/commit-summarizer)** — webhook service that verifies GitHub push events, runs commit metadata through a local Ollama model, and posts plain-English summaries to Slack. Entirely on-prem, no data egress to third-party LLM APIs.
+
+**[obsidian-vault-sync](https://github.com/nathannncurtis/obsidian-vault-sync)** — self-hosted real-time Obsidian sync. FastAPI server + TypeScript plugin, WebSocket push with polling fallback, token auth, Dockerized. Keeps vaults in sync across devices with no third-party service in the loop.
+
+**[steddi](https://steddi.io)** — iOS navigation app for daily commuters who already know their routes. Swift, SwiftUI, MapKit, CarPlay support. Only reroutes when it actually matters. Currently in development.
 
 ---
 

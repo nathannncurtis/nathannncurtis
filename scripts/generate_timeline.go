@@ -26,6 +26,16 @@ const (
 
 var orgs = []string{"ronsin-lss"}
 
+// repos to show by name — everything else becomes "and N more"
+var featured = map[string]bool{
+	"mdview-zig":        true,
+	"Study-Aggregator":  true,
+	"commit-summarizer": true,
+	"obsidian-vault-sync": true,
+	"steddi":            true,
+	"coil":              true,
+}
+
 var langColors = map[string]string{
 	"Python":     "#4A9A9A",
 	"Rust":       "#C97B5E",
@@ -41,22 +51,21 @@ var langColors = map[string]string{
 }
 
 const defaultColor = "#556270"
-const orgColor = "#3A4450"
+const otherColor = "#3A4450"
 
 type ghRepo struct {
-	Name     string `json:"name"`
-	Private  bool   `json:"private"`
-	Archived bool   `json:"archived"`
-	PushedAt string `json:"pushed_at"`
+	Name     string  `json:"name"`
+	Private  bool    `json:"private"`
+	Archived bool    `json:"archived"`
+	PushedAt string  `json:"pushed_at"`
 	Language *string `json:"language"`
 }
 
 type entry struct {
-	Label    string
-	Lang     string
-	Pushed   time.Time
-	Color    string
-	IsOrg    bool
+	Label  string
+	Lang   string
+	Pushed time.Time
+	Color  string
 }
 
 func getToken() string {
@@ -85,10 +94,9 @@ func apiGet(path, token string) ([]byte, error) {
 	return io.ReadAll(resp.Body)
 }
 
-func fetchRepos(token string) []ghRepo {
+func fetchAllRepos(token string) []ghRepo {
 	var all []ghRepo
 
-	// personal repos
 	for page := 1; ; page++ {
 		data, err := apiGet(fmt.Sprintf("/user/repos?type=owner&per_page=100&page=%d", page), token)
 		if err != nil {
@@ -101,7 +109,6 @@ func fetchRepos(token string) []ghRepo {
 		all = append(all, batch...)
 	}
 
-	// org repos
 	for _, org := range orgs {
 		for page := 1; ; page++ {
 			data, err := apiGet(fmt.Sprintf("/orgs/%s/repos?per_page=100&page=%d", org, page), token)
@@ -112,9 +119,6 @@ func fetchRepos(token string) []ghRepo {
 			if json.Unmarshal(data, &batch) != nil || len(batch) == 0 {
 				break
 			}
-			for i := range batch {
-				batch[i].Name = "org:" + batch[i].Name
-			}
 			all = append(all, batch...)
 		}
 	}
@@ -122,7 +126,24 @@ func fetchRepos(token string) []ghRepo {
 	return all
 }
 
-func buildEntries(repos []ghRepo, cutoff time.Time) (personal []entry, orgEntries []entry) {
+func xPos(dt, cutoff time.Time, totalDays float64) float64 {
+	days := dt.Sub(cutoff).Hours() / 24
+	frac := days / totalDays
+	return float64(tlLeft) + frac*float64(svgWidth-tlLeft-rightPad)
+}
+
+func main() {
+	token := getToken()
+	now := time.Now().UTC()
+	cutoff := now.AddDate(0, -monthsBack, 0)
+
+	fmt.Printf("Fetching repos for %s + orgs %v...\n", username, orgs)
+	repos := fetchAllRepos(token)
+	fmt.Printf("  Found %d repos total\n", len(repos))
+
+	var named []entry
+	var otherPushes []time.Time
+
 	for _, r := range repos {
 		if r.Archived || r.PushedAt == "" {
 			continue
@@ -139,49 +160,32 @@ func buildEntries(repos []ghRepo, cutoff time.Time) (personal []entry, orgEntrie
 		if r.Language != nil {
 			lang = *r.Language
 		}
-		color := defaultColor
-		if c, ok := langColors[lang]; ok {
-			color = c
-		}
 
-		isOrg := strings.HasPrefix(r.Name, "org:")
-		name := strings.TrimPrefix(r.Name, "org:")
-
-		e := entry{
-			Label:  name,
-			Lang:   lang,
-			Pushed: pushed,
-			Color:  color,
-			IsOrg:  isOrg,
-		}
-
-		if isOrg {
-			e.Color = orgColor
-			orgEntries = append(orgEntries, e)
+		if featured[r.Name] {
+			color := defaultColor
+			if c, ok := langColors[lang]; ok {
+				color = c
+			}
+			named = append(named, entry{
+				Label:  r.Name,
+				Lang:   lang,
+				Pushed: pushed,
+				Color:  color,
+			})
 		} else {
-			personal = append(personal, e)
+			otherPushes = append(otherPushes, pushed)
 		}
 	}
 
-	sort.Slice(personal, func(i, j int) bool {
-		return personal[i].Pushed.After(personal[j].Pushed)
-	})
-	sort.Slice(orgEntries, func(i, j int) bool {
-		return orgEntries[i].Pushed.After(orgEntries[j].Pushed)
+	sort.Slice(named, func(i, j int) bool {
+		return named[i].Pushed.After(named[j].Pushed)
 	})
 
-	return
-}
+	fmt.Printf("  %d featured + %d other active in last %d months\n", len(named), len(otherPushes), monthsBack)
 
-func xPos(dt, cutoff time.Time, totalDays float64) float64 {
-	days := dt.Sub(cutoff).Hours() / 24
-	frac := days / totalDays
-	return float64(tlLeft) + frac*float64(svgWidth-tlLeft-rightPad)
-}
-
-func generateSVG(personal, orgEntries []entry, cutoff, now time.Time) string {
-	rowCount := len(personal)
-	if len(orgEntries) > 0 {
+	// generate SVG
+	rowCount := len(named)
+	if len(otherPushes) > 0 {
 		rowCount++
 	}
 	height := topPad + rowCount*rowH + bottomPad
@@ -218,8 +222,8 @@ func generateSVG(personal, orgEntries []entry, cutoff, now time.Time) string {
 	tx := xPos(now, cutoff, totalDays)
 	w(fmt.Sprintf(`  <line x1="%.0f" y1="%d" x2="%.0f" y2="%d" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>`, tx, topPad-8, tx, height-bottomPad))
 
-	// personal rows
-	for i, e := range personal {
+	// featured rows
+	for i, e := range named {
 		y := topPad + i*rowH + rowH/2
 		ex := xPos(e.Pushed, cutoff, totalDays)
 
@@ -237,47 +241,26 @@ func generateSVG(personal, orgEntries []entry, cutoff, now time.Time) string {
 		}
 	}
 
-	// consolidated org row
-	if len(orgEntries) > 0 {
-		i := len(personal)
+	// "and N more" row
+	if len(otherPushes) > 0 {
+		i := len(named)
 		y := topPad + i*rowH + rowH/2
-		label := fmt.Sprintf("%d private", len(orgEntries))
+		label := fmt.Sprintf("and %d more", len(otherPushes))
 
 		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#3a4450" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end" font-style="italic">%s</text>`, tlLeft-12, y+4, label))
 		w(fmt.Sprintf(`  <line x1="%d" y1="%d" x2="%d" y2="%d" stroke="#151a20" stroke-width="1"/>`, tlLeft, y, svgWidth-rightPad, y))
 
-		for _, oe := range orgEntries {
-			ox := xPos(oe.Pushed, cutoff, totalDays)
-			w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="3" fill="%s" opacity="0.7"/>`, ox, y, orgColor))
+		for _, pushed := range otherPushes {
+			ox := xPos(pushed, cutoff, totalDays)
+			w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="3" fill="%s" opacity="0.5"/>`, ox, y, otherColor))
 		}
 	}
 
 	w(`</svg>`)
-	return b.String()
-}
 
-func main() {
-	token := getToken()
-
-	now := time.Now().UTC()
-	cutoff := now.AddDate(0, -monthsBack, 0)
-
-	fmt.Printf("Fetching repos for %s + orgs %v...\n", username, orgs)
-	repos := fetchRepos(token)
-	fmt.Printf("  Found %d repos total\n", len(repos))
-
-	personal, orgEntries := buildEntries(repos, cutoff)
-	fmt.Printf("  %d personal + %d org active in last %d months\n", len(personal), len(orgEntries), monthsBack)
-
-	svg := generateSVG(personal, orgEntries, cutoff, now)
-
-	scriptDir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
-	outPath := filepath.Join(scriptDir, "..", "assets", "timeline.svg")
-	// fallback if running via `go run`
-	if _, err := os.Stat(filepath.Dir(outPath)); os.IsNotExist(err) {
-		outPath = filepath.Join("assets", "timeline.svg")
-	}
+	// write
+	outPath := filepath.Join("assets", "timeline.svg")
 	os.MkdirAll(filepath.Dir(outPath), 0755)
-	os.WriteFile(outPath, []byte(svg), 0644)
+	os.WriteFile(outPath, []byte(b.String()), 0644)
 	fmt.Printf("  Written to %s\n", outPath)
 }

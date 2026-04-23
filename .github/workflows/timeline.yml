@@ -21,9 +21,7 @@ jobs:
       - name: Generate timeline SVG
         env:
           GITHUB_TOKEN: ${{ secrets.TIMELINE_TOKEN }}
-        run: |
-          cd scripts
-          go run generate_timeline.go
+        run: go run scripts/generate_timeline.go
 
       - name: Commit and push if changed
         run: |

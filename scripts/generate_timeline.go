@@ -19,9 +19,10 @@ const (
 	svgWidth   = 820
 	rowH       = 28
 	topPad     = 52
-	bottomPad  = 24
+	bottomPad  = 12
 	tlLeft     = 160
 	rightPad   = 28
+	workBins   = 26
 )
 
 var orgs = []string{"ronsin-lss"}
@@ -52,7 +53,7 @@ var langColors = map[string]string{
 }
 
 const defaultColor = "#556270"
-const otherColor = "#3A4450"
+const workColor = "#D4A574"
 
 type ghRepo struct {
 	Name     string  `json:"name"`
@@ -184,15 +185,23 @@ func main() {
 
 	fmt.Printf("  %d featured + %d other active in last %d months\n", len(named), len(otherPushes), monthsBack)
 
-	// generate SVG
-	rowCount := len(named)
-	if len(otherPushes) > 0 {
-		rowCount++
-	}
-	height := topPad + rowCount*rowH + bottomPad
 	totalDays := now.Sub(cutoff).Hours() / 24
 	if totalDays < 1 {
 		totalDays = 1
+	}
+
+	// layout: featured rows on top, optional work band (divider + label + area chart) below
+	featuredEnd := topPad + len(named)*rowH
+	hasWork := len(otherPushes) > 0
+	var dividerY, workLabelY, chartTopY, chartBottomY, height int
+	if hasWork {
+		dividerY = featuredEnd + 10
+		workLabelY = dividerY + 20
+		chartTopY = workLabelY + 12
+		chartBottomY = chartTopY + 30
+		height = chartBottomY + bottomPad
+	} else {
+		height = featuredEnd + bottomPad
 	}
 
 	var b strings.Builder
@@ -242,18 +251,50 @@ func main() {
 		}
 	}
 
-	// "and N more" row
-	if len(otherPushes) > 0 {
-		i := len(named)
-		y := topPad + i*rowH + rowH/2
-		label := fmt.Sprintf("and %d more", len(otherPushes))
+	// work band: divider + WORK label + area chart of weekly push density
+	if hasWork {
+		w(fmt.Sprintf(`  <line x1="28" y1="%d" x2="%d" y2="%d" stroke="#2a3340" stroke-width="1" opacity="0.7"/>`, dividerY, svgWidth-rightPad, dividerY))
+		w(fmt.Sprintf(`  <text x="28" y="%d" fill="%s" font-family="monospace" font-size="10" letter-spacing="2" font-weight="700">WORK</text>`, workLabelY, workColor))
+		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#556270" font-family="monospace" font-size="9" text-anchor="end">%d repos · %d mo</text>`, svgWidth-rightPad, workLabelY, len(otherPushes), monthsBack))
 
-		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#3a4450" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end" font-style="italic">%s</text>`, tlLeft-12, y+4, label))
-		w(fmt.Sprintf(`  <line x1="%d" y1="%d" x2="%d" y2="%d" stroke="#151a20" stroke-width="1"/>`, tlLeft, y, svgWidth-rightPad, y))
+		bins := make([]int, workBins)
+		for _, p := range otherPushes {
+			days := p.Sub(cutoff).Hours() / 24
+			idx := int(days / totalDays * float64(workBins))
+			if idx >= workBins {
+				idx = workBins - 1
+			}
+			if idx < 0 {
+				idx = 0
+			}
+			bins[idx]++
+		}
 
-		for _, pushed := range otherPushes {
-			ox := xPos(pushed, cutoff, totalDays)
-			w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="3" fill="%s" opacity="0.5"/>`, ox, y, otherColor))
+		maxCount := 0
+		for _, c := range bins {
+			if c > maxCount {
+				maxCount = c
+			}
+		}
+		if maxCount > 0 {
+			binWidth := float64(svgWidth-tlLeft-rightPad) / float64(workBins)
+			binCenter := func(i int) float64 {
+				return float64(tlLeft) + (float64(i)+0.5)*binWidth
+			}
+			span := float64(chartBottomY - chartTopY)
+
+			var pts []string
+			pts = append(pts, fmt.Sprintf("%d,%d", tlLeft, chartBottomY))
+			for i, c := range bins {
+				x := binCenter(i)
+				y := float64(chartBottomY) - float64(c)/float64(maxCount)*span
+				pts = append(pts, fmt.Sprintf("%.1f,%.1f", x, y))
+			}
+			pts = append(pts, fmt.Sprintf("%d,%d", svgWidth-rightPad, chartBottomY))
+
+			path := "M " + strings.Join(pts, " L ")
+			w(fmt.Sprintf(`  <path d="%s Z" fill="%s" opacity="0.4"/>`, path, workColor))
+			w(fmt.Sprintf(`  <path d="%s" fill="none" stroke="%s" stroke-width="1.5" opacity="0.95"/>`, path, workColor))
 		}
 	}
 

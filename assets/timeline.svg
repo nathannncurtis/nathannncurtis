@@ -2,18 +2,18 @@
   <rect width="820" height="332" rx="10" fill="#0d1117"/>
   <rect x="0" y="0" width="820" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>
   <text x="28" y="28" fill="#556270" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>
-  <line x1="247" y1="44" x2="247" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="247" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">DEC</text>
-  <line x1="355" y1="44" x2="355" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="355" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JAN</text>
+  <line x1="246" y1="44" x2="246" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="246" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">DEC</text>
+  <line x1="354" y1="44" x2="354" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="354" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JAN</text>
   <line x1="463" y1="44" x2="463" y2="320" stroke="#1a1f26" stroke-width="1"/>
   <text x="463" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">FEB</text>
-  <line x1="561" y1="44" x2="561" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="561" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAR</text>
+  <line x1="560" y1="44" x2="560" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="560" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAR</text>
   <line x1="669" y1="44" x2="669" y2="320" stroke="#1a1f26" stroke-width="1"/>
   <text x="669" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">APR</text>
-  <line x1="774" y1="44" x2="774" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="774" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
+  <line x1="773" y1="44" x2="773" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="773" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
   <line x1="792" y1="44" x2="792" y2="320" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>
   <text x="148" y="70" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">commit-summarizer</text>
   <line x1="160" y1="66" x2="792" y2="66" stroke="#151a20" stroke-width="1"/>

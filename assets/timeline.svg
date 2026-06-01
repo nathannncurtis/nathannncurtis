@@ -2,48 +2,50 @@
   <rect width="820" height="332" rx="10" fill="#0d1117"/>
   <rect x="0" y="0" width="820" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>
   <text x="28" y="28" fill="#556270" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>
-  <line x1="267" y1="44" x2="267" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="267" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JAN</text>
-  <line x1="375" y1="44" x2="375" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="375" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">FEB</text>
-  <line x1="473" y1="44" x2="473" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="473" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAR</text>
-  <line x1="581" y1="44" x2="581" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="581" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">APR</text>
-  <line x1="686" y1="44" x2="686" y2="320" stroke="#1a1f26" stroke-width="1"/>
-  <text x="686" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
+  <line x1="266" y1="44" x2="266" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="266" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JAN</text>
+  <line x1="374" y1="44" x2="374" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="374" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">FEB</text>
+  <line x1="471" y1="44" x2="471" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="471" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAR</text>
+  <line x1="578" y1="44" x2="578" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="578" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">APR</text>
+  <line x1="683" y1="44" x2="683" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="683" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
+  <line x1="790" y1="44" x2="790" y2="320" stroke="#1a1f26" stroke-width="1"/>
+  <text x="790" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JUN</text>
   <line x1="792" y1="44" x2="792" y2="320" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>
   <text x="148" y="70" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">commit-summarizer</text>
   <line x1="160" y1="66" x2="792" y2="66" stroke="#151a20" stroke-width="1"/>
-  <circle cx="704" cy="66" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="714" y="70" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <circle cx="700" cy="66" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="710" y="70" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
   <text x="148" y="98" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">coil</text>
   <line x1="160" y1="94" x2="792" y2="94" stroke="#151a20" stroke-width="1"/>
-  <circle cx="664" cy="94" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="674" y="98" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <circle cx="661" cy="94" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="671" y="98" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
   <text x="148" y="126" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">Study-Aggregator</text>
   <line x1="160" y1="122" x2="792" y2="122" stroke="#151a20" stroke-width="1"/>
-  <circle cx="599" cy="122" r="5" fill="#C97B5E" opacity="0.9"/>
-  <text x="609" y="126" fill="#3a4450" font-family="monospace" font-size="9">Rust</text>
+  <circle cx="596" cy="122" r="5" fill="#C97B5E" opacity="0.9"/>
+  <text x="606" y="126" fill="#3a4450" font-family="monospace" font-size="9">Rust</text>
   <text x="148" y="154" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">mdview-zig</text>
   <line x1="160" y1="150" x2="792" y2="150" stroke="#151a20" stroke-width="1"/>
-  <circle cx="599" cy="150" r="5" fill="#E9A14B" opacity="0.9"/>
-  <text x="609" y="154" fill="#3a4450" font-family="monospace" font-size="9">Zig</text>
+  <circle cx="596" cy="150" r="5" fill="#E9A14B" opacity="0.9"/>
+  <text x="606" y="154" fill="#3a4450" font-family="monospace" font-size="9">Zig</text>
   <text x="148" y="182" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">obsidian-vault-sy…</text>
   <line x1="160" y1="178" x2="792" y2="178" stroke="#151a20" stroke-width="1"/>
-  <circle cx="599" cy="178" r="5" fill="#7DB4E8" opacity="0.9"/>
-  <text x="609" y="182" fill="#3a4450" font-family="monospace" font-size="9">TypeScript</text>
+  <circle cx="596" cy="178" r="5" fill="#7DB4E8" opacity="0.9"/>
+  <text x="606" y="182" fill="#3a4450" font-family="monospace" font-size="9">TypeScript</text>
   <text x="148" y="210" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">File-Processor</text>
   <line x1="160" y1="206" x2="792" y2="206" stroke="#151a20" stroke-width="1"/>
-  <circle cx="599" cy="206" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="609" y="210" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <circle cx="596" cy="206" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="606" y="210" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
   <text x="148" y="238" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">steddi</text>
   <line x1="160" y1="234" x2="792" y2="234" stroke="#151a20" stroke-width="1"/>
-  <circle cx="599" cy="234" r="5" fill="#A78BFA" opacity="0.9"/>
-  <text x="609" y="238" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
+  <circle cx="596" cy="234" r="5" fill="#A78BFA" opacity="0.9"/>
+  <text x="606" y="238" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
   <line x1="28" y1="258" x2="792" y2="258" stroke="#2a3340" stroke-width="1" opacity="0.7"/>
   <text x="28" y="278" fill="#D4A574" font-family="monospace" font-size="10" letter-spacing="2" font-weight="700">WORK</text>
   <text x="792" y="278" fill="#556270" font-family="monospace" font-size="9" text-anchor="end">48 repos · 6 mo</text>
-  <path d="M 160,320 L 172.2,320.0 L 196.5,320.0 L 220.8,320.0 L 245.1,320.0 L 269.4,320.0 L 293.7,320.0 L 318.0,320.0 L 342.3,320.0 L 366.6,320.0 L 390.9,320.0 L 415.2,320.0 L 439.5,320.0 L 463.8,320.0 L 488.2,320.0 L 512.5,317.7 L 536.8,320.0 L 561.1,310.8 L 585.4,315.4 L 609.7,290.0 L 634.0,320.0 L 658.3,313.1 L 682.6,315.4 L 706.9,320.0 L 731.2,308.5 L 755.5,296.9 L 779.8,301.5 L 792,320 Z" fill="#D4A574" opacity="0.4"/>
-  <path d="M 160,320 L 172.2,320.0 L 196.5,320.0 L 220.8,320.0 L 245.1,320.0 L 269.4,320.0 L 293.7,320.0 L 318.0,320.0 L 342.3,320.0 L 366.6,320.0 L 390.9,320.0 L 415.2,320.0 L 439.5,320.0 L 463.8,320.0 L 488.2,320.0 L 512.5,317.7 L 536.8,320.0 L 561.1,310.8 L 585.4,315.4 L 609.7,290.0 L 634.0,320.0 L 658.3,313.1 L 682.6,315.4 L 706.9,320.0 L 731.2,308.5 L 755.5,296.9 L 779.8,301.5 L 792,320" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 160,320 L 172.2,320.0 L 196.5,320.0 L 220.8,320.0 L 245.1,320.0 L 269.4,320.0 L 293.7,320.0 L 318.0,320.0 L 342.3,320.0 L 366.6,320.0 L 390.9,320.0 L 415.2,320.0 L 439.5,320.0 L 463.8,320.0 L 488.2,320.0 L 512.5,317.3 L 536.8,320.0 L 561.1,309.1 L 585.4,290.0 L 609.7,309.1 L 634.0,320.0 L 658.3,311.8 L 682.6,314.5 L 706.9,320.0 L 731.2,306.4 L 755.5,292.7 L 779.8,298.2 L 792,320 Z" fill="#D4A574" opacity="0.4"/>
+  <path d="M 160,320 L 172.2,320.0 L 196.5,320.0 L 220.8,320.0 L 245.1,320.0 L 269.4,320.0 L 293.7,320.0 L 318.0,320.0 L 342.3,320.0 L 366.6,320.0 L 390.9,320.0 L 415.2,320.0 L 439.5,320.0 L 463.8,320.0 L 488.2,320.0 L 512.5,317.3 L 536.8,320.0 L 561.1,309.1 L 585.4,290.0 L 609.7,309.1 L 634.0,320.0 L 658.3,311.8 L 682.6,314.5 L 706.9,320.0 L 731.2,306.4 L 755.5,292.7 L 779.8,298.2 L 792,320" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.95"/>
 </svg>

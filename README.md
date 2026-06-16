@@ -2,6 +2,8 @@
 
 I build internal tools and native apps. The kind that connect systems no one designed to talk to each other, replace manual processes, and survive environments where "just use a SaaS" isn't an option. Most of my work lives in private repos under my org — here's what I can talk about.
 
+Note: Spikes in contributions (150+ in a day) are bulk Dependabot updates across my personal and org re
+
 ---
 
 ### now

@@ -20,7 +20,7 @@ Note: Spikes in contributions (150+ in a day) are bulk Dependabot updates across
 
 **[coil](https://github.com/nathannncurtis/coil)** · Python-to-executable compiler. Directory in, `.exe` out. Published on [PyPI](https://pypi.org/project/coil-compiler/).
 
-**[File-Processor](https://github.com/nathannncurtis/File-Processor)** · Network-aware batch PDF/TIFF/JPEG converter. 20M+ pages processed in production.
+**[canopy](https://github.com/nathannncurtis/canopy)** · Fast Windows disk space analyzer. Direct NTFS MFT enumeration, squarified treemap, Fluent Design UI.
 
 ---
 

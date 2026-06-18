@@ -35,7 +35,7 @@ var featured = map[string]bool{
 	"obsidian-vault-sync": true,
 	"steddi":            true,
 	"coil":              true,
-	"File-Processor":    true,
+	"canopy":            true,
 }
 
 var langColors = map[string]string{
@@ -238,8 +238,8 @@ func main() {
 		ex := xPos(e.Pushed, cutoff, totalDays)
 
 		label := e.Label
-		if len(label) > 18 {
-			label = label[:17] + "…"
+		if len(label) > 22 {
+			label = label[:21] + "…"
 		}
 
 		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">%s</text>`, tlLeft-12, y+4, label))

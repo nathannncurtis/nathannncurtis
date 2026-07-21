@@ -46,4 +46,4 @@ Dashboards, operational automation, and the small utilities that save 20 minutes
 
 ---
 
-<sub>more at [nathancurtis.to](https://nathancurtis.to)</sub>
+<sub>get to know me better at [nathancurtis.to](https://nathancurtis.to)</sub>

@@ -28,6 +28,8 @@ Note: Spikes in contributions (150+ in a day) are bulk Dependabot updates across
 
 Document processing for legal and medical workflows: batch OCR, PDF compression, DICOM aggregation, image classification. Built around the actual hardware, network paths, and legacy software they have to survive in.
 
+On-prem document AI: local vision-LLM inference (vLLM, FP8) that verifies legal record productions the way a clerk does. **1,700 pages in 18 seconds** on a single workstation GPU, because the documents can't leave the building.
+
 Cross-platform native tools where performance matters and a webview doesn't cut it.
 
 Dashboards, operational automation, and the small utilities that save 20 minutes a day.

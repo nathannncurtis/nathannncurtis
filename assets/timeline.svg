@@ -2,38 +2,38 @@
   <rect width="820" height="248" rx="10" fill="#0d1117"/>
   <rect x="0" y="0" width="820" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>
   <text x="28" y="28" fill="#556270" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>
-  <line x1="220" y1="44" x2="220" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="220" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
-  <line x1="327" y1="44" x2="327" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="327" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JUN</text>
-  <line x1="431" y1="44" x2="431" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="431" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JUL</text>
-  <line x1="538" y1="44" x2="538" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="538" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">AUG</text>
-  <line x1="645" y1="44" x2="645" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="645" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">SEP</text>
-  <line x1="749" y1="44" x2="749" y2="236" stroke="#1a1f26" stroke-width="1"/>
-  <text x="749" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">OCT</text>
+  <line x1="217" y1="44" x2="217" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="217" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">MAY</text>
+  <line x1="324" y1="44" x2="324" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="324" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JUN</text>
+  <line x1="428" y1="44" x2="428" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="428" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">JUL</text>
+  <line x1="535" y1="44" x2="535" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="535" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">AUG</text>
+  <line x1="642" y1="44" x2="642" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="642" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">SEP</text>
+  <line x1="745" y1="44" x2="745" y2="236" stroke="#1a1f26" stroke-width="1"/>
+  <text x="745" y="38" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">OCT</text>
   <line x1="792" y1="44" x2="792" y2="236" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>
   <text x="148" y="70" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">coil</text>
   <line x1="160" y1="66" x2="792" y2="66" stroke="#151a20" stroke-width="1"/>
-  <circle cx="676" cy="66" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="686" y="70" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <circle cx="673" cy="66" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="683" y="70" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
   <text x="148" y="98" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">canopy</text>
   <line x1="160" y1="94" x2="792" y2="94" stroke="#151a20" stroke-width="1"/>
-  <circle cx="569" cy="94" r="5" fill="#6A7A8A" opacity="0.9"/>
-  <text x="579" y="98" fill="#3a4450" font-family="monospace" font-size="9">C++</text>
+  <circle cx="566" cy="94" r="5" fill="#6A7A8A" opacity="0.9"/>
+  <text x="576" y="98" fill="#3a4450" font-family="monospace" font-size="9">C++</text>
   <text x="148" y="126" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">commit-summarizer</text>
   <line x1="160" y1="122" x2="792" y2="122" stroke="#151a20" stroke-width="1"/>
-  <circle cx="548" cy="122" r="5" fill="#4A9A9A" opacity="0.9"/>
-  <text x="558" y="126" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
+  <circle cx="545" cy="122" r="5" fill="#4A9A9A" opacity="0.9"/>
+  <text x="555" y="126" fill="#3a4450" font-family="monospace" font-size="9">Python</text>
   <text x="148" y="154" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">steddi</text>
   <line x1="160" y1="150" x2="792" y2="150" stroke="#151a20" stroke-width="1"/>
-  <circle cx="383" cy="150" r="5" fill="#A78BFA" opacity="0.9"/>
-  <text x="393" y="154" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
+  <circle cx="380" cy="150" r="5" fill="#A78BFA" opacity="0.9"/>
+  <text x="390" y="154" fill="#3a4450" font-family="monospace" font-size="9">Swift</text>
   <line x1="28" y1="174" x2="792" y2="174" stroke="#2a3340" stroke-width="1" opacity="0.7"/>
   <text x="28" y="194" fill="#D4A574" font-family="monospace" font-size="10" letter-spacing="2" font-weight="700">WORK</text>
   <text x="792" y="194" fill="#556270" font-family="monospace" font-size="9" text-anchor="end">68 repos · 6 mo</text>
-  <path d="M 160,236 L 172.2,236.0 L 196.5,236.0 L 220.8,236.0 L 245.1,236.0 L 269.4,235.5 L 293.7,236.0 L 318.0,236.0 L 342.3,236.0 L 366.6,236.0 L 390.9,235.5 L 415.2,235.5 L 439.5,236.0 L 463.8,236.0 L 488.2,235.5 L 512.5,236.0 L 536.8,235.5 L 561.1,235.5 L 585.4,235.5 L 609.7,236.0 L 634.0,236.0 L 658.3,236.0 L 682.6,236.0 L 706.9,236.0 L 731.2,236.0 L 755.5,234.4 L 779.8,206.0 L 792,236 Z" fill="#D4A574" opacity="0.4"/>
-  <path d="M 160,236 L 172.2,236.0 L 196.5,236.0 L 220.8,236.0 L 245.1,236.0 L 269.4,235.5 L 293.7,236.0 L 318.0,236.0 L 342.3,236.0 L 366.6,236.0 L 390.9,235.5 L 415.2,235.5 L 439.5,236.0 L 463.8,236.0 L 488.2,235.5 L 512.5,236.0 L 536.8,235.5 L 561.1,235.5 L 585.4,235.5 L 609.7,236.0 L 634.0,236.0 L 658.3,236.0 L 682.6,236.0 L 706.9,236.0 L 731.2,236.0 L 755.5,234.4 L 779.8,206.0 L 792,236" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 160,236 L 172.2,236.0 L 196.5,236.0 L 220.8,236.0 L 245.1,235.5 L 269.4,236.0 L 293.7,236.0 L 318.0,236.0 L 342.3,236.0 L 366.6,236.0 L 390.9,235.5 L 415.2,235.5 L 439.5,236.0 L 463.8,236.0 L 488.2,235.5 L 512.5,236.0 L 536.8,235.5 L 561.1,234.9 L 585.4,236.0 L 609.7,236.0 L 634.0,236.0 L 658.3,236.0 L 682.6,236.0 L 706.9,236.0 L 731.2,236.0 L 755.5,233.9 L 779.8,206.0 L 792,236 Z" fill="#D4A574" opacity="0.4"/>
+  <path d="M 160,236 L 172.2,236.0 L 196.5,236.0 L 220.8,236.0 L 245.1,235.5 L 269.4,236.0 L 293.7,236.0 L 318.0,236.0 L 342.3,236.0 L 366.6,236.0 L 390.9,235.5 L 415.2,235.5 L 439.5,236.0 L 463.8,236.0 L 488.2,235.5 L 512.5,236.0 L 536.8,235.5 L 561.1,234.9 L 585.4,236.0 L 609.7,236.0 L 634.0,236.0 L 658.3,236.0 L 682.6,236.0 L 706.9,236.0 L 731.2,236.0 L 755.5,233.9 L 779.8,206.0 L 792,236" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.95"/>
 </svg>

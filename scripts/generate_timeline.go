@@ -305,4 +305,18 @@ func main() {
 	os.MkdirAll(filepath.Dir(outPath), 0755)
 	os.WriteFile(outPath, []byte(b.String()), 0644)
 	fmt.Printf("  Written to %s\n", outPath)
+
+	// GitHub's light theme colors; the README picks this file when the reader uses a light theme.
+	light := strings.NewReplacer(
+		`fill="#0d1117"`, `fill="#ffffff"`,
+		`#556270`, `#59636e`,
+		`#1a1f26`, `#eaeef2`,
+		`#3a4450`, `#818b98`,
+		`#7a8a96`, `#424a53`,
+		`#151a20`, `#f0f2f5`,
+		`#2a3340`, `#d1d9e0`,
+	).Replace(b.String())
+	lightPath := filepath.Join("assets", "timeline-light.svg")
+	os.WriteFile(lightPath, []byte(light), 0644)
+	fmt.Printf("  Written to %s\n", lightPath)
 }

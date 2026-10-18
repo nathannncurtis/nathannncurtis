@@ -48,7 +48,10 @@ Dashboards, operational automation, and the small utilities that save 20 minutes
 
 ---
 
-<img src="assets/timeline.svg" alt="Recent activity" />
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/timeline-light.svg">
+  <img src="assets/timeline.svg" alt="Recent activity" />
+</picture>
 
 ---
 

@@ -1,36 +1,18 @@
 # nathan 👋
 
-I build internal tools and native apps. The kind that connect systems no one designed to talk to each other, replace manual processes, and survive environments where "just use a SaaS" isn't an option. Most of my work lives in private repos under my org — here's what I can talk about.
+I build internal tools and native apps. The kind that connect systems no one designed to talk to each other, replace manual processes, and survive environments where "just use a SaaS" isn't an option.
 
----
+**[ORCA](https://github.com/nathannncurtis/orca)** · An architectural pattern for building a fast, independent platform on a system you don't own and can't change.
 
-### now
+**[Dokkit](https://dokkit.dev)** · One place that watches everything I run and tells me what needs my attention. Elixir, Phoenix, Go.
 
-**[mdview-zig](https://github.com/nathannncurtis/mdview-zig)** · Native markdown viewer in Zig. DirectWrite / Cairo / CoreText. ~285KB, no webview, no runtime.
+**[steddi](https://steddi.io)** · iOS navigation for people who already know their routes. Rerouted only when it actually matters. Swift, SwiftUI, MapKit.
 
-**[Study Aggregator](https://github.com/nathannncurtis/Study-Aggregator)** · DICOM processor with a Rust engine. Zero-copy mmap parsing, parallel walks (rayon + jwalk). **100–400× faster** than pydicom.
+**[coil](https://github.com/nathannncurtis/coil)** · Python-to-executable compiler. Directory in, `.exe` out. On [PyPI](https://pypi.org/project/coil-compiler/).
 
-**[commit-summarizer](https://github.com/nathannncurtis/commit-summarizer)** · GitHub → local Ollama → Slack. Commit summaries for non-technical stakeholders, entirely on-prem.
+**[mdview](https://github.com/nathannncurtis/mdview-zig)** · Native markdown viewer in Zig. About 285 KB, no webview, no runtime.
 
-**[obsidian-vault-sync](https://github.com/nathannncurtis/obsidian-vault-sync)** · Self-hosted real-time Obsidian sync. FastAPI + WebSocket + TypeScript plugin + Docker.
-
-**[steddi](https://steddi.io)** · iOS navigation app for daily commuters. Swift, SwiftUI, MapKit, CarPlay. In development.
-
-**[coil](https://github.com/nathannncurtis/coil)** · Python-to-executable compiler. Directory in, `.exe` out. Published on [PyPI](https://pypi.org/project/coil-compiler/).
-
-**[canopy](https://github.com/nathannncurtis/canopy)** · Fast Windows disk space analyzer. Direct NTFS MFT enumeration, squarified treemap, Fluent Design UI.
-
----
-
-### what I build
-
-Document processing for legal and medical workflows: batch OCR, PDF compression, DICOM aggregation, image classification. Built around the actual hardware, network paths, and legacy software they have to survive in.
-
-On-prem document AI: local vision-LLM inference (vLLM, FP8) that verifies legal record productions the way a clerk does. **1,700 pages in 18 seconds** on a single workstation GPU, because the documents can't leave the building.
-
-Cross-platform native tools where performance matters and a webview doesn't cut it.
-
-Dashboards, operational automation, and the small utilities that save 20 minutes a day.
+The rest, including what I can't show, is at **[nathancurtis.me/work](https://nathancurtis.me/work)**.
 
 ---
 
@@ -55,4 +37,4 @@ Dashboards, operational automation, and the small utilities that save 20 minutes
 
 ---
 
-<sub>get to know me better at [nathancurtis.to](https://nathancurtis.to)</sub>
+<sub>the rest of me is at [nathancurtis.me](https://nathancurtis.me)</sub>

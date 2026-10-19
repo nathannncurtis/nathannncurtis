@@ -12,7 +12,7 @@ I build internal tools and native apps. The kind that connect systems no one des
 
 **[mdview](https://github.com/nathannncurtis/mdview-zig)** · Native markdown viewer in Zig. About 285 KB, no webview, no runtime.
 
-The rest, including what I can't show, is at **[nathancurtis.me/work](https://nathancurtis.me/work)**.
+The rest, including hints of what I can't show, is at **[nathancurtis.me/work](https://nathancurtis.me/work)**.
 
 ---
 

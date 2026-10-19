@@ -4,9 +4,9 @@ I build internal tools and native apps. The kind that connect systems no one des
 
 **[ORCA](https://github.com/nathannncurtis/orca)** · An architectural pattern for building a fast, independent platform on a system you don't own and can't change.
 
-**[Dokkit](https://dokkit.dev)** · One place that watches everything I run and tells me what needs my attention. Elixir, Phoenix, Go.
+**[Dokkit](https://github.com/nathannncurtis/dokkit)** · One place that watches everything I run and tells me what needs my attention. Elixir, Phoenix, Go. At [dokkit.dev](https://dokkit.dev).
 
-**[steddi](https://steddi.io)** · iOS navigation for people who already know their routes. Rerouted only when it actually matters. Swift, SwiftUI, MapKit.
+**[steddi](https://github.com/nathannncurtis/steddi)** · iOS navigation for people who already know their routes. Rerouted only when it actually matters. Swift, SwiftUI, MapKit. At [steddi.io](https://steddi.io).
 
 **[coil](https://github.com/nathannncurtis/coil)** · Python-to-executable compiler. Directory in, `.exe` out. On [PyPI](https://pypi.org/project/coil-compiler/).
 

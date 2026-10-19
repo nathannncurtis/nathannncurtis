@@ -29,13 +29,12 @@ var orgs = []string{}
 
 // repos to show by name — everything else becomes "and N more"
 var featured = map[string]bool{
-	"mdview-zig":        true,
-	"Study-Aggregator":  true,
-	"commit-summarizer": true,
-	"obsidian-vault-sync": true,
-	"steddi":            true,
-	"coil":              true,
-	"canopy":            true,
+	"orca":            true,
+	"dokkit":          true,
+	"steddi":          true,
+	"coil":            true,
+	"mdview-zig":      true,
+	"nathancurtis.me": true,
 }
 
 var langColors = map[string]string{
@@ -49,6 +48,7 @@ var langColors = map[string]string{
 	"C":          "#6A7A8A",
 	"C#":         "#6A7A8A",
 	"Go":         "#5CB8B8",
+	"Elixir":     "#C084B0",
 	"PHP":        "#6A7A8A",
 }
 
@@ -247,7 +247,11 @@ func main() {
 		w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="5" fill="%s" opacity="0.9"/>`, ex, y, e.Color))
 
 		if e.Lang != "" {
-			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="#3a4450" font-family="monospace" font-size="9">%s</text>`, ex+10, y+4, e.Lang))
+			lx, anchor := ex+10, "start"
+			if lx+float64(len(e.Lang))*5.5 > float64(svgWidth-4) {
+				lx, anchor = ex-10, "end"
+			}
+			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="%s">%s</text>`, lx, y+4, anchor, e.Lang))
 		}
 	}
 

@@ -2,7 +2,7 @@
 
 I build internal tools and native apps. The kind that connect systems no one designed to talk to each other, replace manual processes, and survive environments where "just use a SaaS" isn't an option.
 
-**[ORCA](https://github.com/nathannncurtis/orca)** · An architectural pattern for building a fast, independent platform on a system you don't own and can't change.
+**[ORCA](https://github.com/nathannncurtis/orca)** · An architectural pattern for building a fast, independent platform on a system you don't own and can't change. At [orcapattern.org](https://orcapattern.org).
 
 **[Dokkit](https://github.com/nathannncurtis/dokkit)** · One place that watches everything I run and tells me what needs my attention. Elixir, Phoenix, Go. At [dokkit.dev](https://dokkit.dev).
 

@@ -12,10 +12,10 @@ One place that watches everything I run and tells me what needs my attention. El
 iOS navigation for people who already know their routes. Rerouted only when it actually matters. Swift, SwiftUI, MapKit.
 
 **[coil](https://github.com/nathannncurtis/coil)** · [PyPI](https://pypi.org/project/coil-compiler/)\
-Python-to-executable compiler. Directory in, `.exe` out.
+Python-to-executable compiler. Directory in, `.exe` out. Real native compiler in development.
 
 **[mdview](https://github.com/nathannncurtis/mdview-zig)**\
-Native markdown viewer in Zig. About 285 KB, no webview, no runtime.
+Native markdown viewer in Zig. About 880 KB, no webview, no runtime.
 
 The rest, including hints of what I can't show, is at **[nathancurtis.me/work](https://nathancurtis.me/work)**.
 

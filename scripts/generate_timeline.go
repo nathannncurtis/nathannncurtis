@@ -52,7 +52,7 @@ var langColors = map[string]string{
 	"PHP":        "#6A7A8A",
 }
 
-const defaultColor = "#556270"
+const defaultColor = "rgba(201,214,227,0.41)"
 const workColor = "#D4A574"
 
 type ghRepo struct {
@@ -208,9 +208,9 @@ func main() {
 	w := func(s string) { b.WriteString(s + "\n") }
 
 	w(fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg">`, svgWidth, height, svgWidth, height))
-	w(fmt.Sprintf(`  <rect width="%d" height="%d" rx="10" fill="#0d1117"/>`, svgWidth, height))
+	w(fmt.Sprintf(`  <rect width="%d" height="%d" rx="10" fill="#010409" fill-opacity="0.3"/>`, svgWidth, height))
 	w(fmt.Sprintf(`  <rect x="0" y="0" width="%d" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>`, svgWidth))
-	w(`  <text x="28" y="28" fill="#556270" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>`)
+	w(`  <text x="28" y="28" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>`)
 
 	// month gridlines
 	d := time.Date(cutoff.Year(), cutoff.Month(), 1, 0, 0, 0, 0, time.UTC)
@@ -218,8 +218,8 @@ func main() {
 		if !d.Before(cutoff) {
 			mx := xPos(d, cutoff, totalDays)
 			label := strings.ToUpper(d.Format("Jan"))
-			w(fmt.Sprintf(`  <line x1="%.0f" y1="%d" x2="%.0f" y2="%d" stroke="#1a1f26" stroke-width="1"/>`, mx, topPad-8, mx, height-bottomPad))
-			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="middle">%s</text>`, mx, topPad-14, label))
+			w(fmt.Sprintf(`  <line x1="%.0f" y1="%d" x2="%.0f" y2="%d" stroke="rgba(201,214,227,0.07)" stroke-width="1"/>`, mx, topPad-8, mx, height-bottomPad))
+			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="rgba(201,214,227,0.26)" font-family="monospace" font-size="9" text-anchor="middle">%s</text>`, mx, topPad-14, label))
 		}
 		if d.Month() == 12 {
 			d = time.Date(d.Year()+1, 1, 1, 0, 0, 0, 0, time.UTC)
@@ -242,8 +242,8 @@ func main() {
 			label = label[:21] + "…"
 		}
 
-		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#7a8a96" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">%s</text>`, tlLeft-12, y+4, label))
-		w(fmt.Sprintf(`  <line x1="%d" y1="%d" x2="%d" y2="%d" stroke="#151a20" stroke-width="1"/>`, tlLeft, y, svgWidth-rightPad, y))
+		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="rgba(201,214,227,0.61)" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">%s</text>`, tlLeft-12, y+4, label))
+		w(fmt.Sprintf(`  <line x1="%d" y1="%d" x2="%d" y2="%d" stroke="rgba(201,214,227,0.045)" stroke-width="1"/>`, tlLeft, y, svgWidth-rightPad, y))
 		w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="5" fill="%s" opacity="0.9"/>`, ex, y, e.Color))
 
 		if e.Lang != "" {
@@ -251,15 +251,15 @@ func main() {
 			if lx+float64(len(e.Lang))*5.5 > float64(svgWidth-4) {
 				lx, anchor = ex-10, "end"
 			}
-			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="#3a4450" font-family="monospace" font-size="9" text-anchor="%s">%s</text>`, lx, y+4, anchor, e.Lang))
+			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="rgba(201,214,227,0.26)" font-family="monospace" font-size="9" text-anchor="%s">%s</text>`, lx, y+4, anchor, e.Lang))
 		}
 	}
 
 	// work band: divider + WORK label + area chart of weekly push density
 	if hasWork {
-		w(fmt.Sprintf(`  <line x1="28" y1="%d" x2="%d" y2="%d" stroke="#2a3340" stroke-width="1" opacity="0.7"/>`, dividerY, svgWidth-rightPad, dividerY))
+		w(fmt.Sprintf(`  <line x1="28" y1="%d" x2="%d" y2="%d" stroke="rgba(201,214,227,0.18)" stroke-width="1" opacity="0.7"/>`, dividerY, svgWidth-rightPad, dividerY))
 		w(fmt.Sprintf(`  <text x="28" y="%d" fill="%s" font-family="monospace" font-size="10" letter-spacing="2" font-weight="700">WORK</text>`, workLabelY, workColor))
-		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="#556270" font-family="monospace" font-size="9" text-anchor="end">%d repos · %d mo</text>`, svgWidth-rightPad, workLabelY, len(otherPushes), monthsBack))
+		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="9" text-anchor="end">%d repos · %d mo</text>`, svgWidth-rightPad, workLabelY, len(otherPushes), monthsBack))
 
 		bins := make([]int, workBins)
 		for _, p := range otherPushes {
@@ -312,13 +312,13 @@ func main() {
 
 	// GitHub's light theme colors; the README picks this file when the reader uses a light theme.
 	light := strings.NewReplacer(
-		`fill="#0d1117"`, `fill="#ffffff"`,
-		`#556270`, `#59636e`,
-		`#1a1f26`, `#eaeef2`,
-		`#3a4450`, `#818b98`,
-		`#7a8a96`, `#424a53`,
-		`#151a20`, `#f0f2f5`,
-		`#2a3340`, `#d1d9e0`,
+		`fill="#010409" fill-opacity="0.3"`, `fill="#ffffff"`,
+		`rgba(201,214,227,0.41)`, `#59636e`,
+		`rgba(201,214,227,0.07)`, `#eaeef2`,
+		`rgba(201,214,227,0.26)`, `#818b98`,
+		`rgba(201,214,227,0.61)`, `#424a53`,
+		`rgba(201,214,227,0.045)`, `#f0f2f5`,
+		`rgba(201,214,227,0.18)`, `#d1d9e0`,
 	).Replace(b.String())
 	lightPath := filepath.Join("assets", "timeline-light.svg")
 	os.WriteFile(lightPath, []byte(light), 0644)

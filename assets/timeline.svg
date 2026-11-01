@@ -1,5 +1,5 @@
 <svg width="820" height="304" viewBox="0 0 820 304" xmlns="http://www.w3.org/2000/svg">
-  <rect width="820" height="304" rx="10" fill="#010409" fill-opacity="0.3"/>
+  <rect width="820" height="304" rx="10" fill="transparent"/>
   <rect x="0" y="0" width="820" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>
   <text x="28" y="28" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>
   <line x1="265" y1="44" x2="265" y2="292" stroke="rgba(201,214,227,0.07)" stroke-width="1"/>

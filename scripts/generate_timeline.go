@@ -208,7 +208,7 @@ func main() {
 	w := func(s string) { b.WriteString(s + "\n") }
 
 	w(fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg">`, svgWidth, height, svgWidth, height))
-	w(fmt.Sprintf(`  <rect width="%d" height="%d" rx="10" fill="#010409" fill-opacity="0.3"/>`, svgWidth, height))
+	w(fmt.Sprintf(`  <rect width="%d" height="%d" rx="10" fill="transparent"/>`, svgWidth, height))
 	w(fmt.Sprintf(`  <rect x="0" y="0" width="%d" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>`, svgWidth))
 	w(`  <text x="28" y="28" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>`)
 
@@ -312,7 +312,7 @@ func main() {
 
 	// GitHub's light theme colors; the README picks this file when the reader uses a light theme.
 	light := strings.NewReplacer(
-		`fill="#010409" fill-opacity="0.3"`, `fill="#ffffff"`,
+		`fill="transparent"`, `fill="#ffffff"`,
 		`rgba(201,214,227,0.41)`, `#59636e`,
 		`rgba(201,214,227,0.07)`, `#eaeef2`,
 		`rgba(201,214,227,0.26)`, `#818b98`,

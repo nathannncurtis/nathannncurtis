@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"os"
 	"os/exec"
@@ -14,20 +16,13 @@ import (
 )
 
 const (
-	username   = "nathannncurtis"
-	monthsBack = 6
-	svgWidth   = 820
-	rowH       = 28
-	topPad     = 52
-	bottomPad  = 12
-	tlLeft     = 160
-	rightPad   = 28
-	workBins   = 26
+	username = "nathannncurtis"
+	svgWidth = 820
+	weeks    = 52
+	hotWeeks = 4 // trailing weeks drawn in the accent colour
 )
 
-var orgs = []string{}
-
-// repos to show by name — everything else becomes "and N more"
+// public repos shown by name; every other contribution (including private work) is "everything else"
 var featured = map[string]bool{
 	"orca":            true,
 	"dokkit":          true,
@@ -52,22 +47,37 @@ var langColors = map[string]string{
 	"PHP":        "#6A7A8A",
 }
 
-const defaultColor = "rgba(201,214,227,0.41)"
-const workColor = "#D4A574"
+const defaultLangColor = "#8B949E"
 
-type ghRepo struct {
-	Name     string  `json:"name"`
-	Private  bool    `json:"private"`
-	Archived bool    `json:"archived"`
-	PushedAt string  `json:"pushed_at"`
-	Language *string `json:"language"`
+// palette holds the colours baked into one SVG file. Backgrounds are never painted,
+// so each file sits on whatever page colour the reader's GitHub theme uses.
+type palette struct {
+	Faint  string // eyebrow, month labels
+	Muted  string // legend text, totals
+	Rest   string // "everything else" segment
+	RestOp string
+	Year   string // weekly bars
+	YearOp string
+	Hot    string // trailing weeks
+	Base   string // zero-week stub
 }
 
-type entry struct {
-	Label  string
-	Lang   string
-	Pushed time.Time
-	Color  string
+var dark = palette{
+	Faint: "rgba(201,214,227,0.38)", Muted: "rgba(201,214,227,0.66)",
+	Rest: "rgba(201,214,227,0.36)", RestOp: "0.6",
+	Year: "#4FB0A8", YearOp: "0.7", Hot: "#E3A867", Base: "rgba(201,214,227,0.18)",
+}
+
+var light = palette{
+	Faint: "#8c959f", Muted: "#59636e",
+	Rest: "#8c959f", RestOp: "0.6",
+	Year: "#2E8A83", YearOp: "0.7", Hot: "#B8762F", Base: "#d1d9e0",
+}
+
+type project struct {
+	Name  string
+	Color string
+	Count int
 }
 
 func getToken() string {
@@ -83,244 +93,220 @@ func getToken() string {
 	return ""
 }
 
-func apiGet(path, token string) ([]byte, error) {
-	req, _ := http.NewRequest("GET", "https://api.github.com"+path, nil)
-	req.Header.Set("Authorization", "token "+token)
-	req.Header.Set("Accept", "application/vnd.github+json")
+const query = `query($login: String!) {
+  user(login: $login) {
+    contributionsCollection {
+      contributionCalendar { weeks { contributionDays { date contributionCount } } }
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository { name isPrivate owner { login } primaryLanguage { name } }
+        contributions { totalCount }
+      }
+    }
+  }
+}`
+
+type gqlResp struct {
+	Data struct {
+		User struct {
+			ContributionsCollection struct {
+				ContributionCalendar struct {
+					Weeks []struct {
+						ContributionDays []struct {
+							Date              string `json:"date"`
+							ContributionCount int    `json:"contributionCount"`
+						} `json:"contributionDays"`
+					} `json:"weeks"`
+				} `json:"contributionCalendar"`
+				CommitContributionsByRepository []struct {
+					Repository struct {
+						Name      string `json:"name"`
+						IsPrivate bool   `json:"isPrivate"`
+						Owner     struct {
+							Login string `json:"login"`
+						} `json:"owner"`
+						PrimaryLanguage *struct {
+							Name string `json:"name"`
+						} `json:"primaryLanguage"`
+					} `json:"repository"`
+					Contributions struct {
+						TotalCount int `json:"totalCount"`
+					} `json:"contributions"`
+				} `json:"commitContributionsByRepository"`
+			} `json:"contributionsCollection"`
+		} `json:"user"`
+	} `json:"data"`
+	Errors []struct {
+		Message string `json:"message"`
+	} `json:"errors"`
+}
+
+func fetch(token string) gqlResp {
+	body, _ := json.Marshal(map[string]any{"query": query, "variables": map[string]string{"login": username}})
+	req, _ := http.NewRequest("POST", "https://api.github.com/graphql", bytes.NewReader(body))
+	req.Header.Set("Authorization", "bearer "+token)
 	req.Header.Set("User-Agent", "timeline-generator")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, err
+		fmt.Fprintln(os.Stderr, "GraphQL request failed:", err)
+		os.Exit(1)
 	}
 	defer resp.Body.Close()
-	return io.ReadAll(resp.Body)
+	raw, _ := io.ReadAll(resp.Body)
+	var out gqlResp
+	if err := json.Unmarshal(raw, &out); err != nil || len(out.Errors) > 0 {
+		fmt.Fprintf(os.Stderr, "GraphQL error: %v %s\n", err, raw)
+		os.Exit(1)
+	}
+	return out
 }
 
-func fetchAllRepos(token string) []ghRepo {
-	var all []ghRepo
-
-	for page := 1; ; page++ {
-		data, err := apiGet(fmt.Sprintf("/user/repos?type=owner&per_page=100&page=%d", page), token)
-		if err != nil {
-			break
-		}
-		var batch []ghRepo
-		if json.Unmarshal(data, &batch) != nil || len(batch) == 0 {
-			break
-		}
-		all = append(all, batch...)
+func comma(n int) string {
+	s := fmt.Sprint(n)
+	for i := len(s) - 3; i > 0; i -= 3 {
+		s = s[:i] + "," + s[i:]
 	}
-
-	for _, org := range orgs {
-		for page := 1; ; page++ {
-			data, err := apiGet(fmt.Sprintf("/orgs/%s/repos?per_page=100&page=%d", org, page), token)
-			if err != nil {
-				break
-			}
-			var batch []ghRepo
-			if json.Unmarshal(data, &batch) != nil || len(batch) == 0 {
-				break
-			}
-			all = append(all, batch...)
-		}
-	}
-
-	return all
+	return s
 }
 
-func xPos(dt, cutoff time.Time, totalDays float64) float64 {
-	days := dt.Sub(cutoff).Hours() / 24
-	frac := days / totalDays
-	return float64(tlLeft) + frac*float64(svgWidth-tlLeft-rightPad)
-}
-
-func main() {
-	token := getToken()
-	now := time.Now().UTC()
-	cutoff := now.AddDate(0, -monthsBack, 0)
-
-	fmt.Printf("Fetching repos for %s + orgs %v...\n", username, orgs)
-	repos := fetchAllRepos(token)
-	fmt.Printf("  Found %d repos total\n", len(repos))
-
-	var named []entry
-	var otherPushes []time.Time
-
-	for _, r := range repos {
-		if r.Archived || r.PushedAt == "" {
-			continue
-		}
-		pushed, err := time.Parse(time.RFC3339, r.PushedAt)
-		if err != nil {
-			continue
-		}
-		if pushed.Before(cutoff) {
-			continue
-		}
-
-		lang := ""
-		if r.Language != nil {
-			lang = *r.Language
-		}
-
-		if featured[r.Name] {
-			color := defaultColor
-			if c, ok := langColors[lang]; ok {
-				color = c
-			}
-			named = append(named, entry{
-				Label:  r.Name,
-				Lang:   lang,
-				Pushed: pushed,
-				Color:  color,
-			})
-		} else {
-			otherPushes = append(otherPushes, pushed)
-		}
-	}
-
-	sort.Slice(named, func(i, j int) bool {
-		return named[i].Pushed.After(named[j].Pushed)
-	})
-
-	fmt.Printf("  %d featured + %d other active in last %d months\n", len(named), len(otherPushes), monthsBack)
-
-	totalDays := now.Sub(cutoff).Hours() / 24
-	if totalDays < 1 {
-		totalDays = 1
-	}
-
-	// layout: featured rows on top, optional work band (divider + label + area chart) below
-	featuredEnd := topPad + len(named)*rowH
-	hasWork := len(otherPushes) > 0
-	var dividerY, workLabelY, chartTopY, chartBottomY, height int
-	if hasWork {
-		dividerY = featuredEnd + 10
-		workLabelY = dividerY + 20
-		chartTopY = workLabelY + 12
-		chartBottomY = chartTopY + 30
-		height = chartBottomY + bottomPad
-	} else {
-		height = featuredEnd + bottomPad
-	}
-
+func render(p palette, total int, projects []project, rest int, weekTotals []int, weekStarts []time.Time) string {
 	var b strings.Builder
-	w := func(s string) { b.WriteString(s + "\n") }
+	w := func(format string, a ...any) { fmt.Fprintf(&b, format+"\n", a...) }
+	const height = 200
+	mono := "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+	sans := "system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 
-	w(fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg">`, svgWidth, height, svgWidth, height))
-	w(fmt.Sprintf(`  <rect width="%d" height="%d" rx="10" fill="transparent"/>`, svgWidth, height))
-	w(fmt.Sprintf(`  <rect x="0" y="0" width="%d" height="1" rx="0.5" fill="#4A9A9A" opacity="0.3"/>`, svgWidth))
-	w(`  <text x="28" y="28" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="10" letter-spacing="2">RECENT ACTIVITY</text>`)
+	w(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg">`, svgWidth, height, svgWidth, height)
+	w(`  <text x="0" y="14" fill="%s" font-family="%s" font-size="10" letter-spacing="2">WHERE THE LAST 12 MONTHS WENT</text>`, p.Faint, mono)
+	w(`  <text x="%d" y="14" fill="%s" font-family="%s" font-size="11" text-anchor="end">%s contributions</text>`, svgWidth, p.Muted, mono, comma(total))
 
-	// month gridlines
-	d := time.Date(cutoff.Year(), cutoff.Month(), 1, 0, 0, 0, 0, time.UTC)
-	for d.Before(now) || d.Equal(now) {
-		if !d.Before(cutoff) {
-			mx := xPos(d, cutoff, totalDays)
-			label := strings.ToUpper(d.Format("Jan"))
-			w(fmt.Sprintf(`  <line x1="%.0f" y1="%d" x2="%.0f" y2="%d" stroke="rgba(201,214,227,0.07)" stroke-width="1"/>`, mx, topPad-8, mx, height-bottomPad))
-			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="rgba(201,214,227,0.26)" font-family="monospace" font-size="9" text-anchor="middle">%s</text>`, mx, topPad-14, label))
+	type part struct {
+		label, color, op string
+		count            int
+	}
+	var parts []part
+	for _, pr := range projects {
+		parts = append(parts, part{pr.Name, pr.Color, "", pr.Count})
+	}
+	parts = append(parts, part{"everything else, mostly private", p.Rest, p.RestOp, rest})
+
+	opAttr := func(op string) string {
+		if op == "" {
+			return ""
 		}
-		if d.Month() == 12 {
-			d = time.Date(d.Year()+1, 1, 1, 0, 0, 0, 0, time.UTC)
-		} else {
-			d = time.Date(d.Year(), d.Month()+1, 1, 0, 0, 0, 0, time.UTC)
-		}
+		return fmt.Sprintf(` opacity="%s"`, op)
 	}
 
-	// today marker
-	tx := xPos(now, cutoff, totalDays)
-	w(fmt.Sprintf(`  <line x1="%.0f" y1="%d" x2="%.0f" y2="%d" stroke="#4A9A9A" stroke-width="1" opacity="0.3"/>`, tx, topPad-8, tx, height-bottomPad))
-
-	// featured rows
-	for i, e := range named {
-		y := topPad + i*rowH + rowH/2
-		ex := xPos(e.Pushed, cutoff, totalDays)
-
-		label := e.Label
-		if len(label) > 22 {
-			label = label[:21] + "…"
-		}
-
-		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="rgba(201,214,227,0.61)" font-family="'Segoe UI',system-ui,sans-serif" font-size="12" text-anchor="end">%s</text>`, tlLeft-12, y+4, label))
-		w(fmt.Sprintf(`  <line x1="%d" y1="%d" x2="%d" y2="%d" stroke="rgba(201,214,227,0.045)" stroke-width="1"/>`, tlLeft, y, svgWidth-rightPad, y))
-		w(fmt.Sprintf(`  <circle cx="%.0f" cy="%d" r="5" fill="%s" opacity="0.9"/>`, ex, y, e.Color))
-
-		if e.Lang != "" {
-			lx, anchor := ex+10, "start"
-			if lx+float64(len(e.Lang))*5.5 > float64(svgWidth-4) {
-				lx, anchor = ex-10, "end"
-			}
-			w(fmt.Sprintf(`  <text x="%.0f" y="%d" fill="rgba(201,214,227,0.26)" font-family="monospace" font-size="9" text-anchor="%s">%s</text>`, lx, y+4, anchor, e.Lang))
-		}
+	// split bar
+	x := 0.0
+	for _, pt := range parts {
+		pw := float64(pt.count) / float64(total) * svgWidth
+		w(`  <rect x="%.1f" y="30" width="%.1f" height="26" rx="2" fill="%s"%s/>`, x, math.Max(1.5, pw-2), pt.color, opAttr(pt.op))
+		x += pw
 	}
 
-	// work band: divider + WORK label + area chart of weekly push density
-	if hasWork {
-		w(fmt.Sprintf(`  <line x1="28" y1="%d" x2="%d" y2="%d" stroke="rgba(201,214,227,0.18)" stroke-width="1" opacity="0.7"/>`, dividerY, svgWidth-rightPad, dividerY))
-		w(fmt.Sprintf(`  <text x="28" y="%d" fill="%s" font-family="monospace" font-size="10" letter-spacing="2" font-weight="700">WORK</text>`, workLabelY, workColor))
-		w(fmt.Sprintf(`  <text x="%d" y="%d" fill="rgba(201,214,227,0.41)" font-family="monospace" font-size="9" text-anchor="end">%d repos · %d mo</text>`, svgWidth-rightPad, workLabelY, len(otherPushes), monthsBack))
-
-		bins := make([]int, workBins)
-		for _, p := range otherPushes {
-			days := p.Sub(cutoff).Hours() / 24
-			idx := int(days / totalDays * float64(workBins))
-			if idx >= workBins {
-				idx = workBins - 1
-			}
-			if idx < 0 {
-				idx = 0
-			}
-			bins[idx]++
+	// legend
+	lx := 0.0
+	for _, pt := range parts {
+		pct := float64(pt.count) / float64(total) * 100
+		ps := fmt.Sprintf("%.0f%%", pct)
+		if pct < 1 {
+			ps = "&lt;1%"
 		}
+		label := pt.label + " " + ps
+		w(`  <rect x="%.1f" y="70" width="9" height="9" rx="2" fill="%s"%s/>`, lx, pt.color, opAttr(pt.op))
+		w(`  <text x="%.1f" y="78" fill="%s" font-family="%s" font-size="11">%s</text>`, lx+14, p.Muted, sans, label)
+		lx += 30 + float64(len(strings.ReplaceAll(label, "&lt;", "<")))*6.2
+	}
 
-		maxCount := 0
-		for _, c := range bins {
-			if c > maxCount {
-				maxCount = c
-			}
+	// weekly volume strip
+	maxW := 1
+	for _, t := range weekTotals {
+		if t > maxW {
+			maxW = t
 		}
-		if maxCount > 0 {
-			binWidth := float64(svgWidth-tlLeft-rightPad) / float64(workBins)
-			binCenter := func(i int) float64 {
-				return float64(tlLeft) + (float64(i)+0.5)*binWidth
-			}
-			span := float64(chartBottomY - chartTopY)
+	}
+	bw := float64(svgWidth) / float64(len(weekTotals))
+	for k, t := range weekTotals {
+		h := math.Max(1, float64(t)/float64(maxW)*60)
+		color, op := p.Year, p.YearOp
+		if t == 0 {
+			color, op = p.Base, ""
+		} else if k >= len(weekTotals)-hotWeeks {
+			color, op = p.Hot, ""
+		}
+		w(`  <rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="1.5" fill="%s"%s/>`, float64(k)*bw+1, 170-h, bw-2, h, color, opAttr(op))
+	}
 
-			var pts []string
-			pts = append(pts, fmt.Sprintf("%d,%d", tlLeft, chartBottomY))
-			for i, c := range bins {
-				x := binCenter(i)
-				y := float64(chartBottomY) - float64(c)/float64(maxCount)*span
-				pts = append(pts, fmt.Sprintf("%.1f,%.1f", x, y))
+	// month labels at the first week containing the 1st
+	for k, ws := range weekStarts {
+		for d := 0; d < 7; d++ {
+			day := ws.AddDate(0, 0, d)
+			if day.Day() == 1 {
+				mx := (float64(k) + float64(d)/7) * bw
+				w(`  <text x="%.1f" y="188" fill="%s" font-family="%s" font-size="10" letter-spacing="2">%s</text>`, mx, p.Faint, mono, strings.ToUpper(day.Format("Jan")))
 			}
-			pts = append(pts, fmt.Sprintf("%d,%d", svgWidth-rightPad, chartBottomY))
-
-			path := "M " + strings.Join(pts, " L ")
-			w(fmt.Sprintf(`  <path d="%s Z" fill="%s" opacity="0.4"/>`, path, workColor))
-			w(fmt.Sprintf(`  <path d="%s" fill="none" stroke="%s" stroke-width="1.5" opacity="0.95"/>`, path, workColor))
 		}
 	}
 
 	w(`</svg>`)
+	return b.String()
+}
 
-	// write
-	outPath := filepath.Join("assets", "timeline.svg")
-	os.MkdirAll(filepath.Dir(outPath), 0755)
-	os.WriteFile(outPath, []byte(b.String()), 0644)
-	fmt.Printf("  Written to %s\n", outPath)
+func main() {
+	token := getToken()
+	fmt.Printf("Fetching contributions for %s...\n", username)
+	cc := fetch(token).Data.User.ContributionsCollection
 
-	// GitHub's light theme colors; the README picks this file when the reader uses a light theme.
-	light := strings.NewReplacer(
-		`fill="transparent"`, `fill="#ffffff"`,
-		`rgba(201,214,227,0.41)`, `#59636e`,
-		`rgba(201,214,227,0.07)`, `#eaeef2`,
-		`rgba(201,214,227,0.26)`, `#818b98`,
-		`rgba(201,214,227,0.61)`, `#424a53`,
-		`rgba(201,214,227,0.045)`, `#f0f2f5`,
-		`rgba(201,214,227,0.18)`, `#d1d9e0`,
-	).Replace(b.String())
-	lightPath := filepath.Join("assets", "timeline-light.svg")
-	os.WriteFile(lightPath, []byte(light), 0644)
-	fmt.Printf("  Written to %s\n", lightPath)
+	// last 52 full calendar weeks (the calendar starts with a partial week)
+	calWeeks := cc.ContributionCalendar.Weeks
+	if len(calWeeks) > weeks {
+		calWeeks = calWeeks[len(calWeeks)-weeks:]
+	}
+	var weekTotals []int
+	var weekStarts []time.Time
+	total := 0
+	for _, wk := range calWeeks {
+		sum := 0
+		for _, d := range wk.ContributionDays {
+			sum += d.ContributionCount
+		}
+		start, _ := time.Parse("2006-01-02", wk.ContributionDays[0].Date)
+		weekTotals = append(weekTotals, sum)
+		weekStarts = append(weekStarts, start)
+		total += sum
+	}
+
+	// featured public repos only; private and org repos are never named
+	var projects []project
+	named := 0
+	for _, r := range cc.CommitContributionsByRepository {
+		repo := r.Repository
+		if repo.IsPrivate || repo.Owner.Login != username || !featured[repo.Name] || r.Contributions.TotalCount == 0 {
+			continue
+		}
+		color := defaultLangColor
+		if repo.PrimaryLanguage != nil {
+			if c, ok := langColors[repo.PrimaryLanguage.Name]; ok {
+				color = c
+			}
+		}
+		projects = append(projects, project{repo.Name, color, r.Contributions.TotalCount})
+		named += r.Contributions.TotalCount
+	}
+	sort.Slice(projects, func(i, j int) bool { return projects[i].Count > projects[j].Count })
+	if total < named {
+		total = named
+	}
+	rest := total - named
+	fmt.Printf("  %d contributions over %d weeks; %d in %d featured repos\n", total, len(weekTotals), named, len(projects))
+
+	os.MkdirAll("assets", 0755)
+	for _, f := range []struct {
+		path string
+		p    palette
+	}{{"timeline.svg", dark}, {"timeline-light.svg", light}} {
+		out := filepath.Join("assets", f.path)
+		os.WriteFile(out, []byte(render(f.p, total, projects, rest, weekTotals, weekStarts)), 0644)
+		fmt.Printf("  Written to %s\n", out)
+	}
 }

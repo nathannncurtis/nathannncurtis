@@ -16,15 +16,15 @@
 
 ---
 
-<p><sub><sub>languages</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-languages-dark.svg"><img src="assets/stack-languages-light.svg" width="540" alt="Python, Swift, Objective-C, Rust, Zig, C, C++, C#, TypeScript, JavaScript, Go, Elixir, Kotlin, Java, PHP, PowerShell, Bash, AutoHotkey"></picture></p>
+<p><sub>languages</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-languages-dark.svg"><img src="assets/stack-languages-light.svg" width="680" alt="Python, Swift, Objective-C, Rust, Zig, C, C++, C#, TypeScript, JavaScript, Go, Elixir, Kotlin, Java, PHP, PowerShell, Bash, AutoHotkey"></picture></p>
 
-<p><sub><sub>ai and ml</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-ai-and-ml-dark.svg"><img src="assets/stack-ai-and-ml-light.svg" width="540" alt="PyTorch, ONNX, Hugging Face, vLLM, Ollama, CUDA, llama.cpp, OpenVINO, timm, LoRA / QLoRA, OpenCV, PaddleOCR, NumPy"></picture></p>
+<p><sub>ai and ml</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-ai-and-ml-dark.svg"><img src="assets/stack-ai-and-ml-light.svg" width="680" alt="PyTorch, ONNX, Hugging Face, vLLM, Ollama, CUDA, llama.cpp, OpenVINO, timm, LoRA / QLoRA, OpenCV, PaddleOCR, NumPy"></picture></p>
 
-<p><sub><sub>models</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-models-dark.svg"><img src="assets/stack-models-light.svg" width="540" alt="Mistral AI, Whisper, Qwen, Gemma, DINOv2, GLiNER"></picture></p>
+<p><sub>models</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-models-dark.svg"><img src="assets/stack-models-light.svg" width="680" alt="Mistral AI, Whisper, Qwen, Gemma, DINOv2, GLiNER"></picture></p>
 
-<p><sub><sub>apps and frameworks</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-apps-and-frameworks-dark.svg"><img src="assets/stack-apps-and-frameworks-light.svg" width="540" alt="React, Node.js, Tailwind CSS, Vite, SwiftUI, Jetpack Compose, PyQt, Electron, Tauri, .NET, WPF, FastAPI, Flask, Phoenix"></picture></p>
+<p><sub>apps and frameworks</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-apps-and-frameworks-dark.svg"><img src="assets/stack-apps-and-frameworks-light.svg" width="680" alt="React, Node.js, Tailwind CSS, Vite, SwiftUI, Jetpack Compose, PyQt, Electron, Tauri, .NET, WPF, FastAPI, Flask, Phoenix"></picture></p>
 
-<p><sub><sub>infra and data</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-infra-and-data-dark.svg"><img src="assets/stack-infra-and-data-light.svg" width="540" alt="Docker, GitHub Actions, Playwright, Caddy, WireGuard, Cloudflare Workers, Inno Setup, SQLite, SQL Server, PostgreSQL, Redis, Ubuntu, systemd"></picture></p>
+<p><sub>infra and data</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-infra-and-data-dark.svg"><img src="assets/stack-infra-and-data-light.svg" width="680" alt="Docker, GitHub Actions, Playwright, Caddy, WireGuard, Cloudflare Workers, Inno Setup, SQLite, SQL Server, PostgreSQL, Redis, Ubuntu, systemd"></picture></p>
 
-<p><sub><sub>documents and imaging</sub></sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-documents-and-imaging-dark.svg"><img src="assets/stack-documents-and-imaging-light.svg" width="540" alt="DICOM, Tesseract OCR, PyMuPDF, Win32 API"></picture></p>
+<p><sub>documents and imaging</sub><br><picture><source media="(prefers-color-scheme: dark)" srcset="assets/stack-documents-and-imaging-dark.svg"><img src="assets/stack-documents-and-imaging-light.svg" width="680" alt="DICOM, Tesseract OCR, PyMuPDF, Win32 API"></picture></p>
 

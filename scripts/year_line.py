@@ -20,7 +20,7 @@ def path(counts, width):
         js = [j for j in range(-k, k + 1) if 0 <= i + j < len(counts)]
         sm.append(sum(counts[i + j] * (k + 1 - abs(j)) for j in js) / sum(k + 1 - abs(j) for j in js))
     vals = [math.sqrt(v) for v in sm[::2]]; top = max(vals) or 1
-    base, amp, x0, x1 = 52, 46, 4, width - 4
+    base, amp, x0, x1 = 42, 36, 4, width - 4
     pts = [(x0 + (x1 - x0) * i / (len(vals) - 1), base - amp * v / top) for i, v in enumerate(vals)]
     d = f"M{pts[0][0]:.1f} {pts[0][1]:.1f}"
     for i in range(len(pts) - 1):

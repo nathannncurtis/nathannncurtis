@@ -26,9 +26,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TIMELINE_TOKEN }}
         run: go run scripts/generate_timeline.go
 
+      - name: Redraw year line
+        env:
+          GITHUB_TOKEN: ${{ secrets.TIMELINE_TOKEN }}
+        run: python3 scripts/year_line.py
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/timeline.svg assets/timeline-light.svg
+          git add assets/timeline.svg assets/timeline-light.svg assets/year-*.svg
           git diff --cached --quiet || git commit -m "Update activity timeline" && git push
